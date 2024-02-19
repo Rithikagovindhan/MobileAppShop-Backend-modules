@@ -6,10 +6,11 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 public class productController {
     @Autowired
-    private productService productservice;
+    private ProductService productservice;
     // Api to Account registration with email
     @PostMapping("product")
     public product createAccount(@RequestBody product products) {
+
         return this.productservice.createProduct(products);
     }
     @PutMapping("update/product")

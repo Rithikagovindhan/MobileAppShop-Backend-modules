@@ -1,13 +1,13 @@
 package com.example.mobileapp.cart;
 
-public class customerCart {
+public class CustomerCart {
 
     private Integer customerId;
     private Integer productId;
-    public customerCart() {
+    public CustomerCart() {
         super();
     }
-    public customerCart(Integer customerId, Integer productId) {
+    public CustomerCart(Integer customerId, Integer productId) {
         super();
         this.customerId = customerId;
         this.productId = productId;

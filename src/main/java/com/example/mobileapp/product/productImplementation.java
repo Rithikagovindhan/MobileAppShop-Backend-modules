@@ -4,7 +4,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 @Service
-public class productImplementation implements productService {
+public class productImplementation implements ProductService {
     private ProductRepository productRepository;
 
     @Override

@@ -11,21 +11,28 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 
 @Entity
-public class cart {
+public class Cart {
 
     @Id
     @GeneratedValue
     private Integer id;
 
+    private Integer quantity;
+
     @ManyToMany
     private List<product> products = new ArrayList<>();
 
 
-    public cart() {
+    public Cart() {
         super();
     }
 
-    public cart(Integer id, List<product> products) {
+
+    public Cart(Integer quantity) {
+        this.quantity = quantity;
+    }
+
+    public Cart(Integer id, List<product> products) {
         super();
         this.id = id;
         this.products = products;
@@ -38,6 +45,14 @@ public class cart {
     public void setId(Integer id) {
         this.id = id;
     }
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
+    }
+
 
     public List<product> getProducts() {
         return products;
