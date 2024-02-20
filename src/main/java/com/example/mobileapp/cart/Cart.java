@@ -5,27 +5,34 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.example.mobileapp.product.product;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.*;
 
 @Entity
-public class cart {
+@Table(name="CART")
+public class Cart {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="ID")
     private Integer id;
+
+    @Column(name="QUANTITY")
+    private Integer quantity;
 
     @ManyToMany
     private List<product> products = new ArrayList<>();
 
 
-    public cart() {
+    public Cart() {
         super();
     }
 
-    public cart(Integer id, List<product> products) {
+
+    public Cart(Integer quantity) {
+        this.quantity = quantity;
+    }
+
+    public Cart(Integer id, List<product> products) {
         super();
         this.id = id;
         this.products = products;
@@ -38,6 +45,14 @@ public class cart {
     public void setId(Integer id) {
         this.id = id;
     }
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
+    }
+
 
     public List<product> getProducts() {
         return products;
