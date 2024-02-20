@@ -3,7 +3,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 @Service
-public interface productService {
+public interface ProductService {
     product  createProduct(product newProduct);
     Optional<product> getProductById(Integer id);
     product updateProduct(product products);

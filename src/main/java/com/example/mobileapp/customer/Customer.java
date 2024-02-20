@@ -20,7 +20,9 @@ public class Customer {
     private String name;
     private String email;
     private String password;
+    private String gender;
     private String address;
+
 
     @OneToOne
     private cart Cart;
@@ -29,14 +31,15 @@ public class Customer {
     private List<CustomerOrder> orders = new ArrayList<>();
 
 
-    public Customer(String name, String email, String password, cart Cart, List<CustomerOrder> orders,String address) {
-        super();
+    public Customer(Integer id, String name, String email, String password, String gender, String address, cart cart, List<CustomerOrder> orders) {
+        this.id = id;
         this.name = name;
         this.email = email;
         this.password = password;
-        this.Cart = Cart;
+        this.gender = gender;
+        this.address = address;
+        Cart = cart;
         this.orders = orders;
-        this.address=address;
     }
 
     public String getAddress() {
@@ -81,6 +84,14 @@ public class Customer {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
     public cart getCart() {
