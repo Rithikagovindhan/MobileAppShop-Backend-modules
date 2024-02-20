@@ -11,4 +11,26 @@ public class CustomerServiceImpl implements CustomerService {
 
         return this.customerRepository.save(newCustomer);
     }
+    @Override
+    public boolean isEmailExists(String email) {
+        return customerRepository.existsByEmail(email);
+    }
+
+    @Override
+    public void deleteCustomer(Integer customerId) {
+        if (!customerRepository.existsById(customerId)) {
+            throw new CustomerNotFoundException("Customer not found");
+        }
+        customerRepository.deleteById(customerId);
+    }
+
+    @Override
+    public Customer updateCustomer(Integer customerId, Customer updatedCustomer) {
+        if (!customerRepository.existsById(customerId)) {
+            throw new CustomerNotFoundException("Customer not found");
+        }
+
+        updatedCustomer.setId(customerId);
+        return customerRepository.save(updatedCustomer);
+    }
 }
