@@ -3,11 +3,10 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 @Service
-public interface productService {
-    product  createProduct(product newProduct);
-    Optional<product> getProductById(Integer id);
-    product updateProduct(product products);
+public interface ProductService {
+    Product createProduct(Product newProduct);
+    Optional<Product> getProductById(Integer id);
+    Product updateProduct(Product products);
 
 
-    product getAccountById(Integer accountId);
 }

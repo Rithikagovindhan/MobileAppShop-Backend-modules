@@ -4,7 +4,7 @@ package com.example.mobileapp.cart;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.example.mobileapp.product.product;
+import com.example.mobileapp.product.Product;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -18,14 +18,14 @@ public class cart {
     private Integer id;
 
     @ManyToMany
-    private List<product> products = new ArrayList<>();
+    private List<Product> products = new ArrayList<>();
 
 
     public cart() {
         super();
     }
 
-    public cart(Integer id, List<product> products) {
+    public cart(Integer id, List<Product> products) {
         super();
         this.id = id;
         this.products = products;
@@ -39,11 +39,11 @@ public class cart {
         this.id = id;
     }
 
-    public List<product> getProducts() {
+    public List<Product> getProducts() {
         return products;
     }
 
-    public void setProducts(List<product> products) {
+    public void setProducts(List<Product> products) {
         this.products = products;
     }
 

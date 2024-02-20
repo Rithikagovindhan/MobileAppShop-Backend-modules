@@ -8,19 +8,5 @@ private AdminRepository adminRepository;
     public Admin addProduct(Admin addProducts) {
         return this.adminRepository.save(addProducts);
     }
-//
-//    @Override
-//    public Optional<admin> getProductById(Integer id) {
-//        return Optional.empty();
-//    }
-//
-//    @Override
-//    public admin updateProduct(admin updateProducts) {
-//        return null;
-//    }
-//
-//    @Override
-//    public admin deleteProduct(admin deleteProducts) {
-//        return null;
-//    }
+
 }

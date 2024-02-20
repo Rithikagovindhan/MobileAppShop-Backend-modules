@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.example.mobileapp.payment.payment;
-import com.example.mobileapp.product.product;
+import com.example.mobileapp.product.Product;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -23,17 +23,17 @@ public class CustomerOrder {
     private String status;
 
     @ManyToMany
-    private List<product> products = new ArrayList<>();
+    private List<Product> products = new ArrayList<>();
 
     @OneToOne
     private payment payments;
 
 
 
-    public List<product> getProducts() {
+    public List<Product> getProducts() {
         return products;
     }
-    public void setProducts(List<product> products) {
+    public void setProducts(List<Product> products) {
         this.products = products;
     }
 

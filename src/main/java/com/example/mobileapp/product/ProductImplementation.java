@@ -4,28 +4,24 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 @Service
-public class productImplementation implements productService {
+public class ProductImplementation implements ProductService {
     private ProductRepository productRepository;
 
     @Override
-    public product createProduct(product newProduct) {
+    public Product createProduct(Product newProduct) {
 
         return this.productRepository.save(newProduct);
     }
 
     @Override
-    public Optional<product> getProductById(Integer id) {
+    public Optional<Product> getProductById(Integer id) {
         return this.productRepository.findById(id);
     }
 
     @Override
-    public product updateProduct(product products) {
+    public Product updateProduct(Product products) {
         return this.productRepository.save(products);
     }
 
 
-    @Override
-    public product getAccountById(Integer accountId) {
-        return null;
-    }
 }
