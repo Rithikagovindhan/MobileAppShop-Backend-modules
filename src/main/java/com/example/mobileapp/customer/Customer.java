@@ -1,6 +1,5 @@
 package com.example.mobileapp.customer;
 
-import com.example.mobileapp.cart.cart;
 import com.example.mobileapp.order.CustomerOrder;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -23,13 +22,13 @@ public class Customer {
     private String address;
 
     @OneToOne
-    private cart Cart;
+    private com.example.mobileapp.cart.Cart Cart;
 
     @OneToMany
     private List<CustomerOrder> orders = new ArrayList<>();
 
 
-    public Customer(String name, String email, String password, cart Cart, List<CustomerOrder> orders,String address) {
+    public Customer(String name, String email, String password, com.example.mobileapp.cart.Cart Cart, List<CustomerOrder> orders, String address) {
         super();
         this.name = name;
         this.email = email;
@@ -83,11 +82,11 @@ public class Customer {
         this.password = password;
     }
 
-    public cart getCart() {
+    public com.example.mobileapp.cart.Cart getCart() {
         return Cart;
     }
 
-    public void setCart(cart Cart) {
+    public void setCart(com.example.mobileapp.cart.Cart Cart) {
         this.Cart = Cart;
     }
 

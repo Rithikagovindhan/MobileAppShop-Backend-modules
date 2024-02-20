@@ -4,8 +4,10 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 @Service
+
 public class ProductImplementation implements ProductService {
-    private ProductRepository productRepository;
+
+    private ProductRepository productRepository;;
 
     @Override
     public Product createProduct(Product newProduct) {
@@ -23,5 +25,9 @@ public class ProductImplementation implements ProductService {
         return this.productRepository.save(products);
     }
 
+    @Override
+    public Product deleteProduct(Integer id) {
+        return null;
+    }
 
 }

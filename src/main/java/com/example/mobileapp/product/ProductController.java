@@ -11,7 +11,9 @@ public class ProductController {
     private ProductService productservice;
     // Api to Account registration with email
     @PostMapping("product")
+
     public Product createAccount(@RequestBody Product products) {
+
         return this.productservice.createProduct(products);
     }
     @PutMapping("update/product")
@@ -19,9 +21,13 @@ public class ProductController {
         return this.productservice.updateProduct(products);
     }
     @GetMapping("product/{id}")
-    public Optional<Product> getAccountById(@PathVariable("id") Integer accountId) {
-        return this.productservice.getProductById(accountId);
+    public Optional<Product> getAccountById(@PathVariable("id") Integer productId) {
+        return this.productservice.getProductById(productId);
     }
+    @DeleteMapping("removeProduct")
+    public Product removeProduct(@RequestBody Integer productId) {
+        return this.productservice.deleteProduct(productId);
 
+    }
 
 }
