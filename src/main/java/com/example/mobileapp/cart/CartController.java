@@ -24,13 +24,13 @@ public class CartController {
     public Cart addProducts(@RequestBody Cart products){
         return this.cartService.addToCart(products);
     }
-    @DeleteMapping("removeProduct")
-    public Cart removeProduct(@RequestBody Cart products) {
-        return this.cartService.removeFromCart(products);
-
-    }
+//    @DeleteMapping("removeProduct")
+//    public Cart removeCartProduct(@RequestBody Cart products) {
+//        return this.cartService.removeFromCart(products);
+//
+//    }
     @PutMapping("updateProduct")
-    public Cart updateProduct(@RequestBody Cart products) {
+    public Cart updateCart(@RequestBody Cart products) {
         return this.cartService.updateToCart(products);
 
     }

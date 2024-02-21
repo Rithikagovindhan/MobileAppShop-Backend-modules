@@ -14,20 +14,27 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
     private Integer id;
+
     @Column(name="brand_name")
     private String brandName;
+
     @Column(name="model_name")
     private String modelName;
+
     @Column(name="price")
     private Double price;
+
     @Column(name="color")
     private String color;
+
+    @Column(name="QUANTITY")
     private Integer quantity;
 
     public Product() {
         super();
     }
     public Product(Integer id, String brandName, String modelName, Double price, String color,Integer quantity) {
+        this.id=id;
         this.brandName = brandName;
         this.modelName = modelName;
         this.price = price;
@@ -81,6 +88,6 @@ public class Product {
     }
 
     public double getPrice() {
-        return 0;
+        return price;
     }
 }

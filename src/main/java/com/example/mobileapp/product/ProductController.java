@@ -1,33 +1,26 @@
 package com.example.mobileapp.product;
 
+import com.example.mobileapp.admin.Admin;
+import com.example.mobileapp.admin.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
+import java.util.List;
 import java.util.Optional;
 
 @RestController
 public class ProductController {
-    @Autowired
-    private ProductService productservice;
-    // Api to Account registration with email
+@Autowired
+    private ProductService productService;
     @PostMapping("product")
-
-    public Product createAccount(@RequestBody Product products) {
-
-        return this.productservice.createProduct(products);
+    public Product addNewProduct(@RequestBody Product product) throws productExceptions {
+        return this.productService.createProduct(product);
     }
-    @PutMapping("update/product")
-    public Product updateAccount(@RequestBody Product products) {
-        return this.productservice.updateProduct(products);
+    @GetMapping("product")
+    public List<Product> getAllProducts() throws productExceptions {
+        return this.productService.getAllProducts();
     }
-    @GetMapping("product/{id}")
-    public Optional<Product> getAccountById(@PathVariable("id") Integer productId) {
-        return this.productservice.getProductById(productId);
+   @DeleteMapping("removeProduct/{productId}")
+ public void removeProduct(@PathVariable Integer productId) throws productExceptions {
+        this.productService.deleteProduct(productId);
     }
-    @DeleteMapping("removeProduct")
-    public Product removeProduct(@RequestBody Integer productId) {
-        return this.productservice.deleteProduct(productId);
-
-    }
-
 }

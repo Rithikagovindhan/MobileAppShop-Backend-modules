@@ -1,20 +1,23 @@
 package com.example.mobileapp.admin;
-
 import jakarta.persistence.*;
-
-
-
 @Entity
+@Table(name="Admin")
 public class Admin {
     @Id
     @GeneratedValue
+    @Column(name = "ID")
     private Integer id;
+    @Column(name = "NAME")
     private String name;
+    @Column(name = "EMAIL")
     private String email;
+    @Column(name = "PASSWORD")
     private String password;
-public Admin(){
-    super();
-}
+
+    public Admin() {
+        super();
+    }
+
     public Admin(Integer id, String name, String email, String password) {
         this.id = id;
         this.name = name;
@@ -48,9 +51,5 @@ public Admin(){
 
     public String getPassword() {
         return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 }
