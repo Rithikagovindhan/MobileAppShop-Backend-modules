@@ -1,10 +1,7 @@
 package com.example.mobileapp.product;
-
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-
-
 @Entity
 @Getter
 @Setter

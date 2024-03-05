@@ -1,7 +1,5 @@
 package com.example.mobileapp.cart;
-
 import org.springframework.stereotype.Service;
-
 @Service
 public class CartServiceImpl implements CartService{
     private CartRepository cartRepository;
@@ -26,7 +24,4 @@ public class CartServiceImpl implements CartService{
     public Cart getCartTotal(Cart totalCost) {
         return this.cartRepository.save(totalCost);
     }
-
-    ;
-
 }

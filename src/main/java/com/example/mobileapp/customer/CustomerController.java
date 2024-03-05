@@ -1,16 +1,12 @@
 package com.example.mobileapp.customer;
-
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 @RestController
 @RequestMapping("/api/customers")
 public class CustomerController {
-
     @Autowired
     private CustomerService customerService;
-
     @PostMapping("customer")
     public Customer createAccount(@Valid @RequestBody Customer newCustomer) {
         if (customerService.isEmailExists(newCustomer.getEmail())) {

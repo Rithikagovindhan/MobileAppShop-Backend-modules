@@ -1,7 +1,5 @@
 package com.example.mobileapp.cart;
-
 public class CustomerCart {
-
     private Integer customerId;
     private Integer productId;
     public CustomerCart() {
@@ -24,5 +22,4 @@ public class CustomerCart {
     public void setProductId(Integer productId) {
         this.productId = productId;
     }
-
 }

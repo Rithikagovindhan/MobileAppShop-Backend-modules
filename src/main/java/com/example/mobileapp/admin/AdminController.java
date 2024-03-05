@@ -1,7 +1,4 @@
-
- package com.example.mobileapp.admin;
-import com.example.mobileapp.admin.Admin;
-import com.example.mobileapp.admin.AdminService;
+package com.example.mobileapp.admin;
 import com.example.mobileapp.customer.CustomerService;
 import com.example.mobileapp.product.Product;
 import com.example.mobileapp.product.ProductService;
@@ -22,38 +19,51 @@ public class AdminController {
     @Autowired
     private CustomerService customerService;
     @PostMapping("addproductByAdmin")
-    public Product addNewProduct(@RequestBody Product product) {
+    public Admin addProduct(@RequestBody Admin product) throws AdminExceptions {
         return this.adminService.addProduct(product);
     }
-    @GetMapping("getProductsByAdmin")
-    public List<Product> getAllProducts(){
-        return this.adminService.getAllProducts();
-    }
-    // @GetMapping("getProductsByAdmin")
-// public List<Product> getAllProducts(@PathVariable Integer id){
-// return (List<Product>) this.adminService.getProductById(id);
-// }
-    @GetMapping("customers")
-    public List<Customer> getAllCustomers(){
-        return this.adminService.getAllCustomers();
+    @DeleteMapping("deleteProduct/{id}")
+    public Product deleteProduct(@PathVariable Integer id) throws AdminExceptions{
+        return this.adminService.deleteProductById(id);
     }
     @PostMapping("createAdminAccount")
-    public Admin createAdmin(@RequestBody Admin account) throws AdminExceptions {
-        return this.adminService.createAdmin(account);
+    public Admin createAdmin(@RequestBody Admin newAccount) throws AdminExceptions {
+        return this.adminService.createAdmin(newAccount);
     }
-    @DeleteMapping("account/{id}")
-    public Product deleteProductById(@PathVariable Integer id) {
-        return this.adminService.deleteProductById(id);
+    @GetMapping("getProductsByAdmin")
+    public List<Product> getAllProducts() throws AdminExceptions{
+        return this.adminService.getAllProducts();
+    }
+     @GetMapping("getProduct/{id}")
+     public Product getProduct(@PathVariable Integer id) throws AdminExceptions{
+        return this.adminService.getProductById(id);
+    }
+    @GetMapping("customers")
+    public List<Customer> getAllCustomers() throws AdminExceptions{
+        return this.adminService.getAllCustomers();
     }
 }
 
 
-// @PostMapping("addproductByadmin")
-// public Admin createAccount(@RequestBody Admin addProducts) {
-// return this.adminService.addProduct(addProducts);
-// }
-// @PutMapping("updatebyAdmin/product")
-// public Admin updateAccount(@RequestBody Admin updateProducts) {
-// return this.adminService.updateProduct(updateProducts);
-// }
 
+
+
+//    @PostMapping("newProduct")
+//    public Admin createNewProduct(@RequestBody Admin newProduct){
+//        Admin product=null;
+//        try {
+//            product = this.adminService.createNewProduct(newProduct);
+//        } catch (AdminExceptions e) {
+//            e.printStackTrace();
+//        }
+//        return product;
+//    }
+//@PostMapping("newProduct")
+//public Admin createNewProduct(@RequestBody Admin adminProduct) throws AdminExceptions {
+//    return this.adminService.createNewProduct(adminProduct);
+//}
+
+//    @PostMapping("addproductByAdmin")
+//    public Admin createNewProduct(@RequestBody Admin product) throws AdminExceptions {
+//        return this.adminService.createNewProduct(product);
+//    }

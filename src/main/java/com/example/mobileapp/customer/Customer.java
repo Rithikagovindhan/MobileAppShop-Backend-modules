@@ -50,7 +50,7 @@ public class Customer {
         this.address = address;
     }
 
-    public Customer() {
+    public Customer(int i, String alice, String mail, String alice123, String male, String ywavcmhagvf) {
         super();
     }
 
