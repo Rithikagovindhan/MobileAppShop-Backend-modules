@@ -5,17 +5,17 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
     @Entity
-    public class payment {
+    public class Payment {
 
         @Id
         @GeneratedValue
         private Integer id;
         private String type;
         private LocalDate paymentDate;
-        public payment() {
+        public Payment() {
             super();
         }
-        public payment(Integer id, String type, LocalDate payementDate) {
+        public Payment(Integer id, String type, LocalDate payementDate) {
             super();
             this.id = id;
             this.type = type;

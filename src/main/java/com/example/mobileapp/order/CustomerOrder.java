@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.example.mobileapp.payment.payment;
+import com.example.mobileapp.payment.Payment;
 import com.example.mobileapp.product.Product;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -26,7 +26,7 @@ public class CustomerOrder {
     private List<Product> products = new ArrayList<>();
 
     @OneToOne
-    private payment payments;
+    private Payment payments;
 
 
 

@@ -1,4 +1,4 @@
 package com.example.mobileapp.payment;
 
-public class paymentImplemetation {
+public class PaymentController {
 }
