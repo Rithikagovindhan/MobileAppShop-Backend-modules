@@ -8,6 +8,7 @@ import java.util.List;
 public class CartController {
     @Autowired
     private CartService cartService;
+
     private List<Product> products = new ArrayList<>();
     @PostMapping("Cart")
     public Cart addProducts(@RequestBody Cart products){
@@ -16,13 +17,5 @@ public class CartController {
     @PutMapping("updateProduct")
     public Cart updateCart(@RequestBody Cart products) {
         return this.cartService.updateToCart(products);
-    }
-    @GetMapping("/api/cartTotal")
-    public double getCartTotal() {
-        double total = 0;
-        for (Product item : products) {
-            total += item.getPrice();
-        }
-        return total;
     }
 }
