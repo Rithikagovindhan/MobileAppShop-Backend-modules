@@ -1,14 +1,23 @@
 package com.example.mobileapp.cart;
 
+
 import org.springframework.stereotype.Service;
+
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+
 @Service
 public interface CartService {
-    Cart addToCart(Cart addProduct);
-    Cart removeFromCart(Cart removeProduct);
+    Cart addProductToCart(Cart cart) throws CartExceptions;
 
-    Cart updateToCart(Cart updateProducts);
+    Cart deleteCartProductById(Integer cartId) throws CartExceptions;
 
-    Cart getCartTotal(Cart totalCost);
+    List<Cart> getAllCartProducts() throws  CartExceptions;
+
+    List<Cart> getCartProductsByCartId(Integer cartId) throws  CartExceptions;
+
 
 
 }

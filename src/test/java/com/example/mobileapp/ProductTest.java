@@ -18,7 +18,7 @@ class ProductTest {
     @Test
     void testCreateProduct() throws ProductExceptions {
         // Create a new product
-        Product newProduct = new Product(1,"Vivo","Y50",17000.00,"Blue",2);
+        Product newProduct = new Product();
         // Mock the behavior of the productRepository.save method
         when(productRepository.save(newProduct)).thenReturn(newProduct);
         // Perform the test
@@ -30,7 +30,7 @@ class ProductTest {
     @Test
     void testGetAllProducts() throws ProductExceptions {
         // Create a list of mock products
-        List<Product> mockProducts = Collections.singletonList(new Product(1,"Vivo","Y50",17000.00,"Blue",2));
+        List<Product> mockProducts = Collections.singletonList(new Product());
         // Mock the behavior of the productRepository.findAll method
         when(productRepository.findAll()).thenReturn(mockProducts);
         // Perform the test

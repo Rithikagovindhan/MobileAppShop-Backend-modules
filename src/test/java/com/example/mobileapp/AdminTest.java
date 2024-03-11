@@ -90,7 +90,7 @@ class AdminTest {
     @Test
     void testGetProductById_Success() throws AdminExceptions {
         Integer productId = 1;
-        Product product = new Product(1, "vivo", "Y15",150000.0,"red",2);
+        Product product = new Product();
         when(productRepository.findById(productId)).thenReturn(Optional.of(product));
         Product retrievedProduct = adminService.getProductById(productId);
         assertEquals(product, retrievedProduct);
@@ -98,7 +98,7 @@ class AdminTest {
     @Test
     void testGetAllProducts_Success() throws AdminExceptions{
         List<Product> productList = Arrays.asList(
-                new Product(1, "vivo", "Y15",150000.0,"red",2)
+                new Product()
         );
         when(productRepository.findAll()).thenReturn(productList);
         List<Product> retrievedProducts = adminService.getAllProducts();
@@ -126,7 +126,7 @@ class AdminTest {
     @Test
     void testDeleteProductById_Success() throws AdminExceptions{
         Integer productId = 1;
-        Product product = new Product(1, "vivo", "Y15",150000.0,"red",2);
+        Product product = new Product();
         when(productRepository.findById(productId)).thenReturn(Optional.of(product));
         Product deletedProduct = adminService.deleteProductById(productId);
         assertEquals(product, deletedProduct);
