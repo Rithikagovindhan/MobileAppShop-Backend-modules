@@ -1,14 +1,22 @@
 package com.example.mobileapp.customer;
 
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+
 @Service
 public interface CustomerService {
 
+
+    List<Customer> getAllCustomers();
+
+    List<Customer> getCustomerById(Integer id);
+
     Customer createCustomer(Customer newCustomer);
 
-    boolean isEmailExists(String email);
+    Customer updateCustomer(Customer updatedCustomer);
 
-    void deleteCustomer(Integer customerId);
+    Customer deleteCustomerById(Integer id);
+    String login(String email,String password);
 
-    Customer updateCustomer(Integer customerId, Customer updatedCustomer);
 }
