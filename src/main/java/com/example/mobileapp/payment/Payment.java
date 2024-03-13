@@ -1,43 +1,55 @@
 package com.example.mobileapp.payment;
 
-import java.time.LocalDate;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-    @Entity
-    public class Payment {
+import jakarta.persistence.*;
 
-        @Id
-        @GeneratedValue
-        private Integer id;
-        private String type;
-        private LocalDate paymentDate;
-        public Payment() {
-            super();
-        }
-        public Payment(Integer id, String type, LocalDate payementDate) {
-            super();
-            this.id = id;
-            this.type = type;
-            this.paymentDate = payementDate;
-        }
-        public Integer getId() {
-            return id;
-        }
-        public void setId(Integer id) {
-            this.id = id;
-        }
-        public String getType() {
-            return type;
-        }
-        public void setType(String type) {
-            this.type = type;
-        }
-        public LocalDate getPayementDate() {
-            return paymentDate;
-        }
-        public void setPayementDate(LocalDate payementDate) {
-            this.paymentDate = payementDate;
-        }
+import java.time.LocalDate;
+
+@Entity
+@Table(name="PAYMENT")
+public class Payment {
+    @Id
+    @GeneratedValue
+    @Column(name="ID")
+    private Integer id;
+    @Column(name="PAYMENTDATE")
+    private LocalDate paymentDate;
+    @Column(name="TYPE")
+    private String type;
+    public Integer getId() {
+        return id;
     }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public LocalDate getPaymentDate() {
+        return paymentDate;
+    }
+
+    public void setPaymentDate(LocalDate paymentDate) {
+        this.paymentDate = paymentDate;
+    }
+
+    public Payment(Integer id, LocalDate paymentDate, String type) {
+        this.id = id;
+        this.paymentDate = paymentDate;
+        this.type = type;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+    public Payment(){
+        super();
+    }
+
+
+
+
+}
 
