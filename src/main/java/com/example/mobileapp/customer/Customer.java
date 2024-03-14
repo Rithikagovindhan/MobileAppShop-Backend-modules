@@ -1,59 +1,28 @@
 package com.example.mobileapp.customer;
-
-import com.example.mobileapp.cart.Cart;
-import com.example.mobileapp.order.CustomerOrder;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
-
-import java.util.ArrayList;
-import java.util.List;
-
+import jakarta.persistence.*;
+import lombok.*;
 @Entity
+@Data
+@Table(name="CUSTOMER")
 public class Customer {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="ID")
     private Integer id;
+    @Column(name="NAME")
     private String name;
+    @Column(name="EMAIL")
     private String email;
+    @Column(name="PASSWORD")
     private String password;
+    @Column(name="GENDER")
     private String gender;
+    @Column(name="ADDRESS")
     private String address;
 
 
-    @OneToOne
-    private Cart Cart;
-
-    @OneToMany
-    private List<CustomerOrder> orders = new ArrayList<>();
-
-
-    public Customer(String name, String email, String password,String gender, Cart Cart, List<CustomerOrder> orders,String address) {
-        super();
-        this.name = name;
-        this.email = email;
-        this.password = password;
-        this.gender=gender;
-        this.Cart = Cart;
-        this.orders = orders;
-        this.address=address;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public Customer(int i, String alice, String mail, String alice123, String male, String ywavcmhagvf) {
-        super();
-    }
-
+    // Getter and Setter for 'id'
     public Integer getId() {
         return id;
     }
@@ -62,6 +31,7 @@ public class Customer {
         this.id = id;
     }
 
+    // Getter and Setter for 'name'
     public String getName() {
         return name;
     }
@@ -70,6 +40,7 @@ public class Customer {
         this.name = name;
     }
 
+    // Getter and Setter for 'email'
     public String getEmail() {
         return email;
     }
@@ -78,6 +49,7 @@ public class Customer {
         this.email = email;
     }
 
+    // Getter and Setter for 'password'
     public String getPassword() {
         return password;
     }
@@ -86,6 +58,7 @@ public class Customer {
         this.password = password;
     }
 
+    // Getter and Setter for 'gender'
     public String getGender() {
         return gender;
     }
@@ -94,20 +67,26 @@ public class Customer {
         this.gender = gender;
     }
 
-    public Cart getCart() {
-        return Cart;
+    // Getter and Setter for 'address'
+    public String getAddress() {
+        return address;
     }
 
-    public void setCart(Cart Cart) {
-        this.Cart = Cart;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
-    public List<CustomerOrder> getOrders() {
-        return orders;
+    // Constructor with all fields
+    public Customer( Integer id, String name, String email, String password, String gender, String address) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.gender = gender;
+        this.address = address;
     }
 
-    public void setOrders(List<CustomerOrder> orders) {
-        this.orders = orders;
+    // Default constructor
+    public Customer() {
     }
-
 }

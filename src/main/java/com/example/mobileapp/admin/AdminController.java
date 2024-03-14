@@ -18,52 +18,45 @@ public class AdminController {
     private ProductService productService;
     @Autowired
     private CustomerService customerService;
-    @PostMapping("addproductByAdmin")
-    public Admin addProduct(@RequestBody Admin product) throws AdminExceptions {
+    @PostMapping("createAdmin")
+    public Admin createAdmin(@RequestBody Admin newAdmin) {
+        return adminService.createAdmin(newAdmin);
+    }
+    @PutMapping("updateAdmin")
+    public Admin updateAdmin(@RequestBody Admin updatedAdmin) {
+        return adminService.updateAdmin(updatedAdmin);
+    }
+    @PostMapping("adminLogin")
+    public String login(@RequestParam String email, @RequestParam String password) {
+        String loginResult = adminService.login(email, password);
+        if (loginResult != null) {
+            return loginResult;
+        } else {
+            return "Admin not found or invalid credentials.Try again!!";
+        }
+    }
+    @PostMapping("AddProduct")
+    public Product addNewProduct(@RequestBody Product product) throws AdminExceptions {
         return this.adminService.addProduct(product);
     }
     @DeleteMapping("deleteProduct/{id}")
-    public Product deleteProduct(@PathVariable Integer id) throws AdminExceptions{
+    public Product deleteProduct(@PathVariable Integer id) throws AdminExceptions {
         return this.adminService.deleteProductById(id);
     }
-    @PostMapping("createAdminAccount")
-    public Admin createAdmin(@RequestBody Admin newAccount) throws AdminExceptions {
-        return this.adminService.createAdmin(newAccount);
-    }
-    @GetMapping("getProductsByAdmin")
-    public List<Product> getAllProducts() throws AdminExceptions{
+    @GetMapping("getAllProducts")
+    public List<Product> getAllProducts() throws AdminExceptions {
         return this.adminService.getAllProducts();
     }
-     @GetMapping("getProduct/{id}")
-     public Product getProduct(@PathVariable Integer id) throws AdminExceptions{
+    @GetMapping("getProduct/{id}")
+    public Product getProduct(@PathVariable Integer id) throws AdminExceptions {
         return this.adminService.getProductById(id);
     }
-    @GetMapping("customers")
-    public List<Customer> getAllCustomers() throws AdminExceptions{
+//    @GetMapping("getCustomer/{id}")
+//    public Customer getCustomerById(@PathVariable Integer Id) {
+//        return (Customer) this.customerService.getCustomerById(Id);
+//    }
+    @GetMapping("getCustomers")
+    public List<Customer> getAllCustomers() throws AdminExceptions {
         return this.adminService.getAllCustomers();
     }
 }
-
-
-
-
-
-//    @PostMapping("newProduct")
-//    public Admin createNewProduct(@RequestBody Admin newProduct){
-//        Admin product=null;
-//        try {
-//            product = this.adminService.createNewProduct(newProduct);
-//        } catch (AdminExceptions e) {
-//            e.printStackTrace();
-//        }
-//        return product;
-//    }
-//@PostMapping("newProduct")
-//public Admin createNewProduct(@RequestBody Admin adminProduct) throws AdminExceptions {
-//    return this.adminService.createNewProduct(adminProduct);
-//}
-
-//    @PostMapping("addproductByAdmin")
-//    public Admin createNewProduct(@RequestBody Admin product) throws AdminExceptions {
-//        return this.adminService.createNewProduct(product);
-//    }

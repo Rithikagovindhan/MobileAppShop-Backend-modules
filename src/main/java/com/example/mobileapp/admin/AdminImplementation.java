@@ -16,31 +16,34 @@ public class AdminImplementation implements AdminService {
     @Autowired
     private CustomerRepository customerRepository;
     @Override
-    public Admin createAdmin(Admin newAccount) throws AdminExceptions {
-        Optional<Admin> accountOpt = this.adminRepository.findByEmail(newAccount.getEmail());
-        if (accountOpt.isPresent())
-            throw new AdminExceptions("Email already registered, please re try." + newAccount.getEmail());
-        return this.adminRepository.save(newAccount);
+    public Admin createAdmin(Admin newAdmin) {
+        return adminRepository.save(newAdmin);
     }
     @Override
-    public Admin login(String userEmail, String userPassword) throws AdminExceptions {
-        Optional<Admin> accountOpt = this.adminRepository.findByEmail(userEmail);
-        if (accountOpt.isEmpty())
-            throw new AdminExceptions("Account does not exists for :" + userEmail);
-        Admin foundccount = accountOpt.get();
-        if (!foundccount.getPassword().equals(userPassword))
-            throw new AdminExceptions("Password does not match");
-        return foundccount;
-    }
-
-    @Override
-    public Admin addProduct(Admin product) throws AdminExceptions {
-        try {
-            return this.adminRepository.save(product);
+    public String login(String email, String password) {
+        Optional<Admin> adminOptional = adminRepository.findByEmailAndPassword(email, password);
+        if (adminOptional.isPresent()) {
+            return "Admin login successful";
         }
-        catch (Exception e)
-        {
-            throw new AdminExceptions("Can't create the product: "+e.getMessage());
+        return null;
+    }
+    @Override
+    public Admin updateAdmin(Admin updatedAdmin) {
+        Optional<Admin> existingAdminOptional = adminRepository.findById(updatedAdmin.getId());
+        if (existingAdminOptional.isPresent()) {
+            Admin existingAdmin = existingAdminOptional.get();
+            existingAdmin.setName(updatedAdmin.getName());
+            existingAdmin.setEmail(updatedAdmin.getEmail());
+            return adminRepository.save(existingAdmin);
+        }
+        return null;
+    }
+    @Override
+    public Product addProduct(Product product) throws AdminExceptions {
+        try {
+            return this.productRepository.save(product);
+        } catch (Exception e) {
+            throw new AdminExceptions("Can't add the product: " + e.getMessage());
         }
     }
     @Override
@@ -57,59 +60,40 @@ public class AdminImplementation implements AdminService {
     public Product getProductById(Integer Id) throws AdminExceptions {
         try {
             return this.productRepository.findById(Id).get();
-        }
-        catch (Exception e)
-        {
-            throw new AdminExceptions("Can't retrieve the product by Id: "+e.getMessage());
+        } catch (Exception e) {
+            throw new AdminExceptions("Can't retrieve the product by Id: " + e.getMessage());
         }
     }
-    @Override
-    public Product deleteProductById(Integer Id) throws AdminExceptions {
-        try
-        {
-            return this.productRepository.findById(Id).get();
-        }
-        catch (Exception e)
-        {
-            throw new AdminExceptions("Can't delete the product by id: "+e.getMessage());
-        }
-    }
-
-
-    //    @Override
-//    public Product deleteProductById(Integer id) {
-//        Optional<Product> accountOpt = this.productRepository.findById(id);
-//        this.productRepository.deleteById(id);
-//        return accountOpt.get();
+//    @Override
+//    public Customer getCustomerById(Integer Id) throws AdminExceptions {
+//        try {
+//            return this.customerRepository.findById(Id).get();
+//        } catch (Exception e) {
+//            throw new AdminExceptions("Can't retrieve the customer by Id: " + e.getMessage());
+//        }
 //    }
     @Override
-    public List<Product> getAllProducts() throws AdminExceptions{
+    public Product deleteProductById(Integer Id) throws AdminExceptions {
+        try {
+            return this.productRepository.findById(Id).get();
+        } catch (Exception e) {
+            throw new AdminExceptions("Can't delete the product by id: " + e.getMessage());
+        }
+    }
+    @Override
+    public List<Product> getAllProducts() throws AdminExceptions {
         try {
             return this.productRepository.findAll();
-        }
-        catch (Exception e)
-        {
-            throw new AdminExceptions("Can't retrieve all products: "+e.getMessage());
+        } catch (Exception e) {
+            throw new AdminExceptions("Can't retrieve all products: " + e.getMessage());
         }
     }
     @Override
     public List<Customer> getAllCustomers() throws AdminExceptions {
         try {
             return this.customerRepository.findAll();
-        }
-        catch (Exception e)
-        {
-            throw new AdminExceptions("Can't retrieve all customers: "+e.getMessage());
-        }
-    }
-    @Override
-    public List<Product> findAllProductsContainingName(String queryName) throws AdminExceptions{
-        try {
-            return this.productRepository.findAll();
-        }
-        catch (Exception e)
-        {
-            throw new AdminExceptions("Can't retrieve the product name: "+e.getMessage());
+        } catch (Exception e) {
+            throw new AdminExceptions("Can't retrieve all customers: " + e.getMessage());
         }
     }
 }
