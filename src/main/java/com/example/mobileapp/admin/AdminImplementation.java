@@ -46,16 +46,32 @@ public class AdminImplementation implements AdminService {
             throw new AdminExceptions("Can't add the product: " + e.getMessage());
         }
     }
-    @Override
-    public Admin updateProduct(Admin account) throws AdminExceptions {
-        try {
-            return this.adminRepository.save(account);
-        }
-        catch (Exception e)
-        {
-            throw new AdminExceptions("Can't update the product by Id: "+e.getMessage());
-        }
+//    @Override
+//    public Admin updateProduct(Admin account) throws AdminExceptions{
+//        try {
+//            return this.adminRepository.save(account);
+//        }
+//        catch (Exception e)
+//        {
+//            throw new AdminExceptions("Can't update the product by Id: "+e.getMessage());
+//        }
+//    }
+@Override
+public Product updateProduct(Product updatedProduct) throws AdminExceptions {
+    try {
+        Product existingProduct = productRepository.findById(updatedProduct.getId())
+                .orElseThrow(() -> new AdminExceptions("Product not found"));
+        existingProduct.setId(updatedProduct.getId());
+        existingProduct.setBrandName(updatedProduct.getBrandName());
+        existingProduct.setModelName(updatedProduct.getModelName());
+        existingProduct.setColor(updatedProduct.getColor());
+        existingProduct.setPrice(updatedProduct.getPrice());
+        existingProduct.setQuantity(updatedProduct.getQuantity());
+        return productRepository.save(existingProduct);
+    } catch (Exception e) {
+        throw new AdminExceptions("Unable to update the product: " + e.getMessage());
     }
+}
     @Override
     public Product getProductById(Integer Id) throws AdminExceptions {
         try {

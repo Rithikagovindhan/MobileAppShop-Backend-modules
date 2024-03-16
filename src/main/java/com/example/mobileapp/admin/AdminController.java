@@ -26,6 +26,14 @@ public class AdminController {
     public Admin updateAdmin(@RequestBody Admin updatedAdmin) {
         return adminService.updateAdmin(updatedAdmin);
     }
+        @PutMapping("updateProductByAdmin")
+        public Product updateProduct(@RequestBody Product updatedProduct) {
+            try {
+                return adminService.updateProduct(updatedProduct);
+            } catch (AdminExceptions e) {
+                return null;
+            }
+        }
     @PostMapping("adminLogin")
     public String login(@RequestParam String email, @RequestParam String password) {
         String loginResult = adminService.login(email, password);
@@ -51,10 +59,6 @@ public class AdminController {
     public Product getProduct(@PathVariable Integer id) throws AdminExceptions {
         return this.adminService.getProductById(id);
     }
-//    @GetMapping("getCustomer/{id}")
-//    public Customer getCustomerById(@PathVariable Integer Id) {
-//        return (Customer) this.customerService.getCustomerById(Id);
-//    }
     @GetMapping("getCustomers")
     public List<Customer> getAllCustomers() throws AdminExceptions {
         return this.adminService.getAllCustomers();

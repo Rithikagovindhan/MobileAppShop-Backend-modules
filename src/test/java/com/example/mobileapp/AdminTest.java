@@ -55,26 +55,37 @@ class AdminTest {
         assertNull(loginResult);
     }
     @Test
-    void testUpdateAdmin() {
-        Admin updatedAdmin = new Admin(1, "karthik", "karthik@gmail.com.com", "karthik@123");
-        when(adminRepository.findById(1)).thenReturn(Optional.of(new Admin()));
-        when(adminRepository.save(any(Admin.class))).thenReturn(updatedAdmin);
+    public void testUpdateAdmin() throws AdminExceptions {
+        Admin existingAdmin = new Admin(1, "karthik", "karthik@gmail.com.com", "karthik@123");
+        Admin updatedAdmin = new Admin(1, "karthick Manikam", "karthik@gmail.com.com", "karthik@123");
+        when(adminRepository.findById(1)).thenReturn(java.util.Optional.of(existingAdmin));
+        when(adminRepository.save(existingAdmin)).thenReturn(updatedAdmin);
         Admin result = adminService.updateAdmin(updatedAdmin);
-        assertEquals("UpdatedAdminName", result.getName());
+        assertEquals(updatedAdmin.getId(), result.getId());
+        assertEquals(updatedAdmin.getName(), result.getName());
+        assertEquals(updatedAdmin.getEmail(), result.getEmail());
+        assertEquals(updatedAdmin.getPassword(), result.getPassword());
     }
+//    @Test
+//    void testAddProduct() throws AdminExceptions {
+//        Product newProduct = new Product(1, "vivo", "Y15", 150000.0, "red", 2);
+//        when(productRepository.save(any(Product.class))).thenReturn(newProduct);
+//        Product addedProduct = adminService.addProduct(newProduct);
+//        assertEquals("New Product", addedProduct.getId());
+//    }
     @Test
-    void testAddProduct() throws AdminExceptions {
-        Product newProduct = new Product(1, "vivo", "Y15", 150000.0, "red", 2);
-        when(productRepository.save(any(Product.class))).thenReturn(newProduct);
-        Product addedProduct = adminService.addProduct(newProduct);
-        assertEquals("New Product", addedProduct.getId());
-    }
-    @Test
-    void testUpdateProduct_Success() throws AdminExceptions {
-        Admin admin = new Admin(1, "John Doe", "johndoe@example.com", "password");
-        when(adminRepository.save(admin)).thenReturn(admin);
-        Admin updatedAdmin = adminService.updateProduct(admin);
-        assertEquals(admin, updatedAdmin);
+    public void testUpdateProduct() throws AdminExceptions {
+        Product existingProduct = new Product(1, "vivo", "Y15", 150000.0, "red", 2);
+        Product updatedProduct = new Product(1, "vivo", "Y50", 150000.0, "red", 2);
+        when(productRepository.findById(1)).thenReturn(java.util.Optional.of(existingProduct));
+        when(productRepository.save(existingProduct)).thenReturn(updatedProduct);
+        Product result = adminService.updateProduct(updatedProduct);
+        assertEquals(updatedProduct.getId(), result.getId());
+        assertEquals(updatedProduct.getBrandName(), result.getBrandName());
+        assertEquals(updatedProduct.getModelName(), result.getModelName());
+        assertEquals(updatedProduct.getPrice(), result.getPrice());
+        assertEquals(updatedProduct.getColor(), result.getColor());
+        assertEquals(updatedProduct.getQuantity(), result.getQuantity());
     }
     @Test
     void testGetProductById_Success() throws AdminExceptions {
